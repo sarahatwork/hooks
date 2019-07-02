@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import './index.css';
+
 const Accordion = ({
   children
 }) => {
@@ -7,7 +9,12 @@ const Accordion = ({
 
   return (
     <>
-      <button onClick={() => setIsOpen(!isOpen)}>Toggle</button>
+      <button
+        className="accordion__button"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        Toggle
+      </button>
       {isOpen && children}
     </>
 );
