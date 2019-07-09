@@ -2,7 +2,6 @@ import React, { useEffect, useContext, useState } from 'react';
 
 import { BreedContext } from '../App';
 
-
 const BreedForm = () => {
   const {
     breed,

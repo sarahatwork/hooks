@@ -23,6 +23,7 @@ const reducer = (state, action) => {
   }
 }
 
+// TODO MEMOIZE
 const Gallery = () => {
   const [{
     isLoading,
@@ -31,16 +32,26 @@ const Gallery = () => {
   const { breed } = useContext(BreedContext);
 
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
     const fetchData = async () => {
       dispatch({ type: 'RESET' });
-      const res =  await fetch(`https://dog.ceo/api/breed/${breed}/images/random/3`);
-      const json = await res.json();
-      dispatch({
-        type: 'SUCCESS',
-        payload: json.message
-      })
+      try {
+        const res =  await fetch(`https://dog.ceo/api/breed/${breed}/images/random/3`, { signal });
+        const json = await res.json();
+        dispatch({
+          type: 'SUCCESS',
+          payload: json.message
+        })
+      } catch(e) {
+        // nothing
+      }
     }
     fetchData()
+    return () => {
+      controller.abort()
+    }
   }, [breed])
 
   if (isLoading) return <h1>LOADING</h1>;
