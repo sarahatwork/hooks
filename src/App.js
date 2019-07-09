@@ -13,10 +13,21 @@ class App extends Component {
     breed: 'chihuahua',
     setBreed: (breed) => {
       this.setState({ breed })
-    }
+    },
+    title: ''
+  }
+
+  componentDidMount() {
+    document.addEventListener('securitypolicyviolation', (e) => {
+      this.setState({
+        title: `${e.blockedURI} - ${e.violatedDirective}`,
+      });
+    });
   }
 
   render() {
+    const { title } = this.state;
+
     return (
       <div className="App">
         <BreedContext.Provider value={this.state}>
@@ -26,6 +37,7 @@ class App extends Component {
           </Accordion>
         </BreedContext.Provider>
         <a href="http://www.google.com" target="_blank">External link</a>
+        <h1>{title || 'No error'}</h1>
       </div>
     );
   }
