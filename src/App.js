@@ -19,6 +19,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <a href="http://www.google.com" target="_blank">External link</a>
         <BreedContext.Provider value={this.state}>
           <BreedForm />
           <Accordion>
