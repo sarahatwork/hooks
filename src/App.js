@@ -4,6 +4,7 @@ import './App.css';
 
 import Accordion from './accordion';
 import Gallery from './gallery';
+import BreedForm from './breedForm';
 
 export const BreedContext = React.createContext();
 
@@ -19,6 +20,7 @@ class App extends Component {
     return (
       <div className="App">
         <BreedContext.Provider value={this.state}>
+          <BreedForm />
           <Accordion>
             <Gallery />
           </Accordion>

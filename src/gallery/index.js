@@ -28,10 +28,7 @@ const Gallery = () => {
     isLoading,
     images
   }, dispatch] = useReducer(reducer, initialState)
-  const {
-    breed,
-    setBreed
-  } = useContext(BreedContext);
+  const { breed } = useContext(BreedContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,10 +41,7 @@ const Gallery = () => {
       })
     }
     fetchData()
-    setTimeout(() => {
-      setBreed('poodle')
-    }, 3000)
-  }, [breed, setBreed])
+  }, [breed])
 
   if (isLoading) return <h1>LOADING</h1>;
 

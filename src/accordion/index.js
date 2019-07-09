@@ -13,7 +13,7 @@ const Accordion = ({
         className="accordion__button"
         onClick={() => setIsOpen(!isOpen)}
       >
-        Toggle
+        Toggle Results
       </button>
       {isOpen && children}
     </>
